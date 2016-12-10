@@ -1,0 +1,317 @@
+<!-- 
+/**
+ * PlayerUI Copyright (C) 2013 Andrea Coiutti & Simone De Gregori
+ * Tsunamp Team http://www.tsunamp.com
+ *
+ * This Program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3, or (at your option)
+ * any later version.
+ *
+ * This Program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with TsunAMP; see the file COPYING.  If not, see
+ * <http://www.gnu.org/licenses/>.
+ *
+ * Moode Audio Player (C) 2014 Tim Curtis
+ * http://moodeaudio.org
+ *
+ * 2016-11-27 3.0 TC initial version
+ *
+ */
+-->	
+<div class="container">
+	<h1>Audio Configuration</h1>
+
+	<form class="form-horizontal" method="post">
+
+		<legend>System Audio</legend>
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="i2sdevice">I2S audio device</label>
+				<div class="controls">
+					<select id="i2sdevice" class="input-large" name="i2sdevice">		
+						$_i2s[i2sdevice]
+					</select>
+					<button class="btn btn-primary btn-small" type="submit" name="update_i2s_device" value="novalue" style="margin-left: 8px;">Set</button>
+				</div>
+			</div>	
+
+			<div class="control-group">
+				<label class="control-label" for="alsavolume">ALSA volume (%)</label>
+				<div class="controls">
+                    <input class="input-mini" $_alsa_volume_readonly type="number" maxlength="3" min="0" max="100" id="alsavolume" name="alsavolume" value="$_alsa_volume" required>
+					<button class="btn btn-primary btn-small set-button $_alsa_volume_hide" type="submit" name="update_alsa_volume" value="novalue">Set</button>
+					<a class="info-toggle" data-cmd="info-alsavol" href="#notarget"><i class="icon-info-sign"></i></a>
+					<span id="info-alsavol" class="help-block help-block-margin hide">
+						The value displayed in this field is the current ALSA setting.
+                    </span>
+					$_alsa_volume_msg
+				</div>
+			</div>	
+			
+			<div class="control-group">
+				<label class="control-label">Rotary encoder</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="togglerotaryenc2">ON</label>
+						$_system_select[rotaryenc1]
+						<label class="toggle-radio" for="togglerotaryenc1">OFF</label>
+						$_system_select[rotaryenc0]				
+					</div>
+					<span style="display: inline-block; vertical-align: top">
+						<button class="btn btn-primary btn-small set-button" type="submit" name="update_rotary_enc" value="novalue">Set</button>
+						<a class="info-toggle" data-cmd="info-rotary-enc" href="#notarget"><i class="icon-info-sign"></i></a>
+					</span>
+					<span id="info-rotary-enc" class="help-block help-block-margin hide">
+						Enable a rotary encoder device to control volume.<br>
+						- Driver uses WiringPi library and GPIO pins 23, 24 and GND.<br>
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="crossfeed">Crossfeed DSP</label>
+				<div class="controls">
+					<select id="crossfeed" class="input-large" name="crossfeed">
+						$_system_select[crossfeed]
+					</select>
+					<button class="btn btn-primary btn-small set-button" type="submit" name="update_crossfeed" value="novalue">Set</button>
+					<a class="info-toggle" data-cmd="info-crossfeed" href="#notarget"><i class="icon-info-sign"></i></a>
+					<span id="info-crossfeed" class="help-block help-block-margin hide">
+						- 700 Hz, 4.5 dB - Default<br>
+						This setting is closest to the virtual speaker placement with azimuth 30 degrees and the removal of about 3 meters, while listening by headphones.<br>
+						- 700 Hz, 6.0 dB - Chu Moy (most popular)<br>
+						This setting is close to the parameters of a Chu Moy crossfeeder.<br>
+						- 650 Hz, 9.5 dB - Jan Meier<br>
+						This setting is close to the parameters of a crossfeeder implemented in Jan Meier's CORDA amplifiers, making the smallest change to the signal for relaxed listening with headphones.<br>
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Auto-shuffle</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="toggleashufflesvc2">ON</label>
+						$_system_select[ashufflesvc1]
+						<label class="toggle-radio" for="toggleashufflesvc1">OFF</label>
+						$_system_select[ashufflesvc0]
+					</div>
+					<span style="display: inline-block; vertical-align: top">
+						<button class="btn btn-primary btn-small set-button" type="submit" name="update_ashufflesvc" value="novalue">Set</button>
+						<a class="info-toggle" data-cmd="info-ashufflesvc" href="#notarget"><i class="icon-info-sign"></i></a>
+					</span>
+					<span id="info-ashufflesvc" class="help-block help-block-margin hide">						
+						When the last song in the Playlist has finished playing Auto-shuffle adds a random song from the music library
+						to the end of the Playlist, then removes it when it finishes playing. This creates a continuous stream of music 
+						without growing the Playlist.<br>
+						NOTE: Auto-shuffle replaces MPD random play as the default method for the 'Random' button on the Playback panel.<br>
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Autoplay after start</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="toggleautoplay2">ON</label>
+						$_system_select[autoplay1]
+						<label class="toggle-radio" for="toggleautoplay1">OFF</label>
+						$_system_select[autoplay0]
+					</div>
+					<span style="display: inline-block; vertical-align: top">
+						<button class="btn btn-primary btn-small set-button" type="submit" name="update_autoplay" value="novalue">Set</button>
+						<a class="info-toggle" data-cmd="info-autoplay" href="#notarget"><i class="icon-info-sign"></i></a>
+					</span>
+					<span id="info-autoplay" class="help-block help-block-margin hide">
+						Play the last played item after system boots up.<br>
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="mpdcrossfade">MPD crossfade (secs)</label>
+				<div class="controls">
+                    <input class="input-mini" type="number" maxlength="2" min="0" max="15" id="mpdcrossfade" name="mpdcrossfade" value="$_mpdcrossfade" required>
+					<button class="btn btn-primary btn-small set-button" type="submit" name="update_mpdcrossfade" value="novalue">Set</button>
+					<a class="info-toggle" data-cmd="info-mpdcrossfade" href="#notarget"><i class="icon-info-sign"></i></a>
+					<span id="info-mpdcrossfade" class="help-block help-block-margin hide">
+						MPD uses its audio buffer for crossfading thus there must be enough buffer space available to perform the requested
+						number of seconds of crossfade for a given audio format.<br>
+						NOTE: Set to 0 to disable crossfade.
+                    </span>
+				</div>
+			</div>	
+		</fieldset>
+
+		<legend>Network audio</legend>
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="airplayname">Airplay receiver</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="toggleairplaysvc2">ON</label>
+						$_system_select[airplaysvc1]
+						<label class="toggle-radio" for="toggleairplaysvc1">OFF</label>
+						$_system_select[airplaysvc0]
+					</div>
+					<span style="display: inline-block; vertical-align: top">
+						<input class="input-large" type="text" id="airplayname" name="airplayname" value="$_system_select[airplayname]" style="width:117px;" required>
+ 						<button class="btn btn-primary btn-small set-button" type="submit" name="update_airplay_settings" value="novalue">Set</button>
+						<a class="info-toggle" data-cmd="info-airplaysvc" href="#notarget"><i class="icon-info-sign"></i></a>
+					</span>
+					<span id="info-airplaysvc" class="help-block help-block-margin hide">
+						Shairport-sync by Mike Brady, the wonderful fork of<br>
+						the original Shairport by James "Abrasive" Laird.
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Airplay metadata</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="toggleairplaymeta2">ON</label>
+						$_system_select[airplaymeta1]
+						<label class="toggle-radio" for="toggleairplaymeta1">OFF</label>
+						$_system_select[airplaymeta0]
+					</div>
+					<span style="display: inline-block; vertical-align: top">
+						<button class="btn btn-primary btn-small set-button" type="submit" name="update_airplay_meta" value="novalue">Set</button>
+						<a class="info-toggle" data-cmd="info-airplaymeta" href="#notarget"><i class="icon-info-sign"></i></a>
+					</span>
+					<span id="info-airplaymeta" class="help-block help-block-margin hide">
+						Display metadata and cover art from Airplay sender on Playback panel.
+                    </span>
+				</div>
+			</div> 
+
+			<div class="control-group">
+				<label class="control-label" for="airplayvol">Airplay volume</label>
+				<div class="controls">
+					<select id="airplayvol" class="input-large" name="airplayvol">
+						$_system_select[airplayvol]
+					</select>
+					<button class="btn btn-primary btn-small set-button" type="submit" name="update_airplayvol" value="novalue">Set</button>
+					<a class="info-toggle" data-cmd="info-airplayvol" href="#notarget"><i class="icon-info-sign"></i></a>
+					<span id="info-airplayvol" class="help-block help-block-margin hide">
+						Auto: use hardware volume if available<br>
+						Software: always use software volume
+                    </span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="upnpname">UPnP renderer</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="toggleupnpsvc2">ON</label>
+						$_system_select[upnpsvc1]
+						<label class="toggle-radio" for="toggleupnpsvc1">OFF</label>
+						$_system_select[upnpsvc0]
+					</div>
+					<span style="display: inline-block; vertical-align: top">
+	                    <input class="input-large" type="text" id="upnpname" name="upnpname" value="$_system_select[upnpname]" style="width:117px;" required>
+						<button class="btn btn-primary btn-small set-button" type="submit" name="update_upnp_settings" value="novalue">Set</button>
+						<a class="info-toggle" data-cmd="info-upnpsvc" href="#notarget"><i class="icon-info-sign"></i></a>
+					</span>
+					<span id="info-upnpsvc" class="help-block help-block-margin hide">
+						Upmpdcli (UPnP Client for MPD) by Jean-Francois Dockes.<br>
+						- Supports Open Home Media (ohMedia).<br>
+						- Provides album art via upexplorer.
+                    </span>
+				</div>
+			</div> 
+
+			<div class="control-group">
+				<label class="control-label">Squeezelite renderer</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="toggleslsvc2">ON</label>
+						$_system_select[slsvc1]
+						<label class="toggle-radio" for="toggleslsvc1">OFF</label>
+						$_system_select[slsvc0]
+					</div>
+					<span style="display: inline-block; vertical-align: top">
+						<button class="btn btn-primary btn-small set-button" type="submit" name="update_sl_settings" value="novalue">Set</button>
+						<a class="info-toggle" data-cmd="info-slsvc" href="#notarget"><i class="icon-info-sign"></i></a>
+					</span>
+					<span id="info-slsvc" class="help-block help-block-margin hide">
+						Squeezelite renderer by Adrian Smith and Ralph Irving (triode).<br>
+                    </span>
+					<span class="help-block help-block-margin">
+						<a id="dlnasvc-link" href="sqe-config.php">Configure&nbsp;</a>Squeezelite settings<br> 
+					</span>
+				</div>
+			</div>
+			
+			<div class="control-group">
+				<label class="control-label">DLNA server</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="toggledlnasvc2">ON</label>
+						$_system_select[dlnasvc1]
+						<label class="toggle-radio" for="toggledlnasvc1">OFF</label>
+						$_system_select[dlnasvc0]
+					</div>
+					<span style="display: inline-block; vertical-align: top">
+	                    <input class="input-large" type="text" id="dlnaname" name="dlnaname" value="$_system_select[dlnaname]" style="width:117px;" required>
+						<button class="btn btn-primary btn-small set-button" type="submit" name="update_dlna_settings" value="novalue">Set</button>
+						<a class="info-toggle" data-cmd="info-dlnasvc" href="#notarget"><i class="icon-info-sign"></i></a>
+					</span>
+					<span id="info-dlnasvc" class="help-block help-block-margin hide">
+						DLNA server (miniDLNA) by Justin Maggard.<br>
+                    </span>
+					<span class="help-block help-block-margin">
+						<a data-toggle="modal" href="#rebuild-dlnadb">Rebuild&nbsp;</a> DLNA database.<br>
+						<a id="dlnasvc-link" href="http://$_system_select[hostname]:8200" target="_blank">View status&nbsp;</a>of database update.<br> 
+					</span>
+				</div>
+			</div>
+		</fieldset>
+			
+		<legend>Audio Services</legend>
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label">Audio scrobbler</label>
+				<div class="controls">
+					<div class="toggle">
+						<label class="toggle-radio" for="togglempdassvc2">ON</label>
+						$_system_select[mpdassvc1]
+						<label class="toggle-radio" for="togglempdassvc1">OFF</label>
+						$_system_select[mpdassvc0]
+					</div>
+					<span style="display: inline-block; vertical-align: top">
+						<input class="input-large" type="text" id="mpdasuser" name="mpdasuser" value="$_system_select[mpdasuser]" style="width:117px;" placeholder="userid">
+ 						<button class="btn btn-primary btn-small set-button" type="submit" name="update_mpdas" value="novalue">Set</button>
+						<a class="info-toggle" data-cmd="info-mpdas" href="#notarget"><i class="icon-info-sign"></i></a><br><br>
+						<input class="input-large" type="password" id="mpdaspwd" name="mpdaspwd" value="$_system_select[mpdaspwd]" style="width:117px;" placeholder="password">
+					</span>
+					<span id="info-mpdas" class="help-block help-block-margin hide">
+						MPD Audio Scrobbler for Last.FM by Henrik Friedrichsen.<br>
+                    </span>
+				</div>
+			</div>
+		</fieldset>
+
+		<div id="rebuild-dlnadb" class="modal modal-sm hide fade" tabindex="-1" role="dialog" aria-labelledby="rebuild-dlnadb-label" aria-hidden="true">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h3 id="rebuild-dlnadb-label">Rebuild DLNA database</h3>
+			</div>
+			<div class="modal-body">
+				<h4>Confirm to rebuild DLNA database</h4>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-primary" type="submit" name="rebuild_dlnadb" value="1">Confirm</button>
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+			</div>
+		</div>
+
+	</form>
+</div>

@@ -1,0 +1,3 @@
+%BitDepth%
+%SamplingRate%
+%Channel(s)%
