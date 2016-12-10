@@ -1,0 +1,30 @@
+#########################################
+# Update package for Moode Audio Player
+# 
+# http://moodeaudio.org
+#########################################
+
+[general]
+mooderel=r30
+pkgdate=2016-12-05
+
+[content]
+pkgdesc=<p>NOTE: This update can take <b>several minutes</b> to complete.<br>REBOOT after completion and then do the following:<br>&bull; Open Customize and toggle the Theme color to reset it<br>&bull; Open System config and toggle the MPD scheduler policy to reset it<br>&bull; If running Advanced kernel press INSTALL to update it then REBOOT</p><p>Remember to BACKUP Moode SD Card before updating.</p>
+linecnt=16
+1=-- Updates
+2=UPD: Add RR to MPD scheduler policy dropdown
+3=UPD: Bump squeezelite to version 1.8.5-823
+4=UPD: Reduce squeezelite DSP buffer setting for armv6l
+5=UPD: Minor cleanup for rotary encoder driver
+6=UPD: Switch to 4.4.24 advanced kernel
+7=UPD: Add moodeaudio.org and twitter links to About
+8=-- Bug fixes
+9=FIX: Logic in Squeezelite restart job in Worker 
+10=FIX: Pegged CPU due to FIFO schedule pol in squeezelite svc
+11=FIX: MPD/Squeezelite fail on 1-core armv7l due to CPUAffinity
+12=FIX: Squeezelite compatibility with armv6l platform (Pi-1B/B+)
+13=FIX: PCM5121 chip options grayed out on Customize screen
+14=FIX: Incorrect coding for Audiophonics PCM5122 in audiodev tbl
+15=FIX: Browse not scrolling to selected item after back btn
+16=FIX: DLNA server status page not found
+
