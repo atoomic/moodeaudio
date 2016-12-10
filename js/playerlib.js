@@ -1640,6 +1640,11 @@ $('.context-menu a').click(function(){
         $('ol.playhistory').html(output);
         $('#playhistory-modal').modal();
     }
+
+    // Bed Timer
+    if ($(this).data('cmd') == 'settimer') {
+        $('#timer-modal').modal();
+    }
     
 });
 

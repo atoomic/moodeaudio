@@ -824,6 +824,31 @@
 	</div>
 </div>
 
+<!-- Sleep Timer -->	
+<div id="timer-modal" class="modal modal-sm hide fade" tabindex="-1" role="dialog" aria-labelledby="timer-modal-label" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3 id="timer-modal-label">Bed Timer</h3>
+	</div>
+	<div class="timer-search">
+		<form id="ph-search" method="post" onSubmit="return false;">
+			<div class="input-append" style="margin-bottom: 0;">
+				<input id="ph-filter" type="text" value="" placeholder="search" data-placement="bottom" data-toggle="tooltip">
+				<span id="ph-filter-results"></span>
+				<button class="btn ph-firstPage"><i class="icon-double-angle-up"></i></button>
+				<button class="btn ph-lastPage"><i class="icon-double-angle-down"></i></button>
+			</div>
+		</form>
+	</div>
+	<div class="modal-body" id="container-timer">
+		<div id="timer">
+			<ol class="timer"></ol>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+	</div>
+</div>
 
 <!-- Volume warning -->	
 <div id="volumewarning-modal" class="modal modal-sm hide fade" tabindex="-1" role="dialog" aria-labelledby="volumewarning-modal-label" aria-hidden="true">

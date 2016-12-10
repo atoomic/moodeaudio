@@ -71,6 +71,7 @@
 		<a class="dropdown-toggle btn" id="menu-settings" role="button" data-toggle="dropdown" data-target="#" href="#notarget" title="System menu"><i class="icon-reorder"></i></a>
 		<ul class="dropdown-menu" role="menu" aria-labelledby="menu-settings">
 			<li class="context-menu menu-separator"><a href="#notarget" data-cmd="setforclockradio-m"><i id="clockradio-icon-m" class="icon-time sx clockradio-off-m"></i> Clock radio</a></li>
+			<li><a href="#notarget" data-cmd="settimer-m"><i id="timer-icon-m" class="icon-moon sx timer-off-m"></i> Timer</a></li>
 			<li><a href="#configure-modal" data-toggle="modal"><i class="icon-cogs sx"></i> Configure</a></li>
 			<li class="context-menu menu-separator"><a href="#notarget" data-cmd="customize"><i class="icon-edit sx"></i> Customize</a></li>
 			<li><a href="javascript:$('#audioinfo-modal .modal-body').load('audioinfo.php',function(e){$('#audioinfo-modal').modal('show');}); void 0"><i class="icon-cog sx"></i> Audio info</a></li>
