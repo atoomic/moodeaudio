@@ -1640,7 +1640,29 @@ $('.context-menu a').click(function(){
         $('ol.playhistory').html(output);
         $('#playhistory-modal').modal();
     }
-    
+
+    // Bed Timer
+    if ($(this).data('cmd') == 'settimer') {
+        $('#timer-modal').modal();
+    }
+
+});
+
+// update timer
+$('.btn-timer-update').click(function(){
+
+	SESSION.json['timermin'] = $('input[name=timermin]:checked').val();
+
+	var result = sendMoodeCmd('POST', 'timer',
+		{'timermin': SESSION.json['timermin']
+		}
+	);
+	if ( SESSION.json['timermin'] > 0 ) {
+		notify('timer', '');
+	} else {
+		notify('timerstop', '');
+	}
+
 });
 
 // update clock radio settings

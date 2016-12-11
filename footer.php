@@ -824,6 +824,59 @@
 	</div>
 </div>
 
+<!-- Sleep Timer -->
+<div id="timer-modal" class="modal modal-sm hide fade" tabindex="-1" role="dialog" aria-labelledby="timer-modal-label" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3 id="timer-modal-label">Sleep Timer</h3>
+	</div>
+	<div class="modal-body" id="container-timer">
+		<form class="form-horizontal" data-validate="parsley" action="" method="">
+		    <fieldset>
+				<div class="form-check">
+				  <label class="form-check-label">
+				    <input class="form-check-input" type="radio" name="timermin" id="timermin0" value="0" checked>
+				    Disable
+				  </label>
+				</div>
+				<div class="form-check">
+				  <label class="form-check-label">
+				    <input class="form-check-input" type="radio" name="timermin" id="timermin15" value="15">
+				    15 minutes
+				  </label>
+				</div>
+				<div class="form-check">
+				  <label class="form-check-label">
+				    <input class="form-check-input" type="radio" name="timermin" id="timermin30" value="30">
+				    30 minutes
+				  </label>
+				</div>
+				<div class="form-check">
+				  <label class="form-check-label">
+				    <input class="form-check-input" type="radio" name="timermin" id="timermin45" value="45">
+				    45 minutes
+				  </label>
+				</div>
+				<div class="form-check">
+				  <label class="form-check-label">
+				    <input class="form-check-input" type="radio" name="timermin" id="timermin60" value="60">
+				    1 hour
+				  </label>
+				</div>
+				<div class="form-check">
+				  <label class="form-check-label">
+				    <input class="form-check-input" type="radio" name="timermin" id="timermin120" value="120">
+				    2 hours
+				  </label>
+				</div>
+            </fieldset>
+		</form>
+		<div class="modal-action-btns">
+			<button class="btn btn-timer-update btn-primary" data-dismiss="modal">Set Timer</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+		</div>
+	</div>
+</div>
 
 <!-- Volume warning -->	
 <div id="volumewarning-modal" class="modal modal-sm hide fade" tabindex="-1" role="dialog" aria-labelledby="volumewarning-modal-label" aria-hidden="true">
