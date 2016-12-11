@@ -34,6 +34,7 @@ function notify(cmd, msg) {
         remove: 'Removed from playlist',
         move: 'Playlist items moved',
         savepl: 'Playlist saved',
+        timer: 'Sleep Timer set, Good Night :-)',
         needplname: 'Enter a name',
         delsavedpl: 'Playlist deleted',
         delstation: 'Radio station deleted',

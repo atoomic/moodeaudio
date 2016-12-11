@@ -1645,7 +1645,21 @@ $('.context-menu a').click(function(){
     if ($(this).data('cmd') == 'settimer') {
         $('#timer-modal').modal();
     }
-    
+
+});
+
+// update timer
+$('.btn-timer-update').click(function(){	
+
+	SESSION.json['timermin'] = $('input[name=timermin]:checked').val();
+	console.log("set the timer to ...." + $('input[name=timermin]:checked').val() );
+
+	var result = sendMoodeCmd('POST', 'timer',
+		{'timermin': SESSION.json['timermin']
+		}
+	);
+
+    notify('timer', '');
 });
 
 // update clock radio settings

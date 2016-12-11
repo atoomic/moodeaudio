@@ -331,6 +331,15 @@ if (isset($_GET['cmd']) && $_GET['cmd'] === '') {
 					echo json_encode(searchDB($sock, $_GET['querytype'], $_POST['query']));
 				}
 				break;
+	        case 'timer':
+	            if (isset($_POST['timermin']) && $_POST['timermin'] > 0) {
+	                $timer = 0 + $_POST['timermin'];
+	                exec('bash -c "exec nohup setsid /var/www/command/sleep.sh '.$timer.' >/dev/null 2>&1 &"');
+	                echo json_encode('Ok set timer to ' . $timer);
+				} else {
+					echo json_encode('Error: set timer');
+				}
+				break;				
 		}
 	}		
 }
